@@ -65,7 +65,7 @@ QUnit.module('Тестируем функцию tree', function () {
 		assert.strictEqual(tree(11 / 5), null);
 	});
 
-	QUnit.test('Incorret imput', function (assert) {
+	QUnit.test('Incorrect input', function (assert) {
 		assert.strictEqual(tree(null), null);
 		assert.strictEqual(tree(undefined), null);
 		assert.strictEqual(tree("undefined"), null);
