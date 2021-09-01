@@ -17,7 +17,7 @@ const layerBuilder = (char, contentNum, width) => {
  * Создает ASCII-ёлочку заданной высоты из звёздочек (*).
  *
  * @param {number|string} number - Высота ёлочки (целое число).
- * @returns {string} ASCII ёлочка.
+ * @returns {string|null} ASCII ёлочка или null при неправильном входном параметре.
  */
 const tree = number => {
     const num = +number;
