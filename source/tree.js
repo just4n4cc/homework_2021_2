@@ -1,19 +1,36 @@
 'use strict';
 
+/**
+ * Создает один уровень ёлочки по заданным параметрам.
+ *
+ * @param {string} char - Материал ёлочки.
+ * @param {number} contentNum - Количество символов ёлочки.
+ * @param {number} width - Ширина ёлочки.
+ * @returns {string} Уровень ёлочки.
+ */
+const layerBuilder = (char, contentNum, width) => {
+    const res = char.repeat(contentNum)
+    return res.padStart((width + contentNum) / 2).padEnd(width) + '\n'
+}
+
+/**
+ * Создает ASCII-ёлочку заданной высоты из звёздочек (*).
+ *
+ * @param {number|string} number - Высота ёлочки (целое число).
+ * @returns {string} ASCII ёлочка.
+ */
 const tree = number => {
-    const num = Number(number);
+    const num = +number;
     if (num < 3 || isNaN(num) || (!Number.isInteger(num))) return null;
     
     let res = '';
-    const max_num = num * 2 - 3;
-    let asterisk_num = -1;
+    const width = num * 2 - 3;
+    let asteriskNum = -1;
     for (let i = 1; i < num; ++i) {
-        asterisk_num += 2;
-        const spaces_num = (max_num - asterisk_num) / 2;
-        res += ' '.repeat(spaces_num) + '*'.repeat(asterisk_num) + ' '.repeat(spaces_num) + '\n';
+        asteriskNum += 2;
+        res += layerBuilder('*', asteriskNum, width);
     }
 
-    const spaces_num = (max_num - 1) / 2;
-    res += ' '.repeat(spaces_num) + '|' + ' '.repeat(spaces_num) + '\n';
+    res += layerBuilder('|', 1, width);
     return res;
 }

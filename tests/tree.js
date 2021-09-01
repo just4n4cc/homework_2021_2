@@ -62,7 +62,7 @@ QUnit.module('Тестируем функцию tree', function () {
 	QUnit.test('Ёлочек с дробной высотой не бывает', function (assert) {
 		assert.strictEqual(tree(1.4), null);
 		assert.strictEqual(tree(-3.4), null);
-		assert.strictEqual(tree(11 / 5), null);
+		assert.strictEqual(tree(33 / 5), null);
 	});
 
 	QUnit.test('Incorrect input', function (assert) {
