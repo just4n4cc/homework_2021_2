@@ -8,8 +8,8 @@
  * @param {number} width - Ширина ёлочки.
  * @returns {string} Уровень ёлочки.
  */
-const layerBuilder = (char, contentNum, width) => {
-    const res = char.repeat(contentNum)
+const layerBuilder = (content, contentNum, width) => {
+    const res = ''.padStart(contentNum, content);
     return res.padStart((width + contentNum) / 2).padEnd(width) + '\n'
 }
 
@@ -23,14 +23,13 @@ const tree = number => {
     const num = +number;
     if (num < 3 || isNaN(num) || (!Number.isInteger(num))) return null;
     
-    let res = '';
     const width = num * 2 - 3;
-    let asteriskNum = -1;
-    for (let i = 1; i < num; ++i) {
-        asteriskNum += 2;
-        res += layerBuilder('*', asteriskNum, width);
-    }
 
-    res += layerBuilder('|', 1, width);
+    let treeStructure = [...'|'.padStart(num, '*')];
+    const res = treeStructure.reduce(
+        (accum, curr, index) => {
+            return accum + (curr === '|' ? layerBuilder(curr, 1, width) : layerBuilder(curr, index * 2 + 1, width));
+        }, '');
+
     return res;
 }
